@@ -1,8 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[32]:
-
 
 get_ipython().system('pip install opencage')
 get_ipython().system('pip install folium')
@@ -36,58 +31,24 @@ from sklearn.neural_network import MLPClassifier
 from yellowbrick.classifier import ClassBalance, ROCAUC, ClassificationReport, ClassPredictionError
 from sklearn import metrics
 
-
-# In[47]:
-
-
 df = pd.read_csv(r'C:\Users\user\Downloads\RMS_Crime_Incidents.csv', index_col=None)
-
-
-# In[48]:
-
 
 df.head(5)
 
 
-# In[21]:
-
-
 df.describe().T
 
-
-# In[22]:
-
-
 df.dtypes
-
-
-# In[23]:
-
 
 df.shape
 
 
-# In[49]:
-
-
 df.drop(['crime_id','report_number','X','Y','oid','charge_description'], axis=1, inplace=True)
 
-
-# In[50]:
-
-
 df.head()
-
-
-# In[51]:
-
 
 df.columns = ['Address','Description','Offense','Offense_code','Arrest_Charge','Incident_timestamp','Time','Day','Hour','Year','Scout_car_area','Precinct','Block_id','Neighborhood','Council_dist','Zip','Long','Lat']
 df.head()
-
-
-# In[52]:
-
 
 df['Incident_timestamp'] = pd.to_datetime(df['Incident_timestamp'])
 df['Date'] = df['Incident_timestamp'].dt.date
@@ -96,27 +57,11 @@ df['Month'] = df['Incident_timestamp'].dt.month
 df['Day_of_week'] = df['Incident_timestamp'].dt.day_name()
 df['Day_number'] = df['Incident_timestamp'].dt.dayofweek
 
-
-# In[38]:
-
-
 df.head()
-
-
-# In[53]:
-
 
 df.drop(['Incident_timestamp', 'Day'], axis=1, inplace=True)
 
-
-# In[90]:
-
-
 df.head()
-
-
-# In[54]:
-
 
 df = df[['Address','Description','Offense','Offense_code','Report_time','Time','Day_number','Day_of_week','Hour','Month','Year','Date','Scout_car_area','Precinct','Block_id','Neighborhood','Council_dist','Zip','Long','Lat']]
 
@@ -1104,7 +1049,6 @@ print(classification_report(y2, result5, target_names=target_names))
 g = visualizer.poof()
 
 
-# In[ ]:
 
 
 
